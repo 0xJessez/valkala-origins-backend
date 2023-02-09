@@ -34,6 +34,29 @@ const Orc = {
           return null
         }
       })
+  },
+
+  findByUserId: (id) => {
+    const sql = `
+        SELECT * FROM orcs WHERE user_id = $1;
+      `
+    return db
+      .query(sql, [id])
+      // .then(dbRes => console.log(dbRes))
+      .then(dbRes => {
+        if (dbRes.rows.length > 0) {
+          return dbRes.rows[0]
+        } else {
+          return null
+        }
+      })
+  },
+
+  restoreEnergy: (energy, loggedInUserId) => {
+    const sql = `UPDATE orcs SET energy = $1 WHERE user_id = $2`
+
+    return db
+      .query(sql, [energy, loggedInUserId])
   }
 }
 

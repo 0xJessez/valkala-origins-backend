@@ -30,5 +30,9 @@ router.get('/', (req, res) => {
     })
 })
 
+router.delete('/', (req, res) => {
+  req.session.userId = null
+  res.json(req.session.userId)
+})
 
 module.exports = router

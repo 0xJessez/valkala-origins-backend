@@ -21,18 +21,25 @@ router.post('/', (req, res) => {
 })
 
 router.post('/check', (req, res) => {
-  const { loggedInUserName } = req.body
-
+  const { loggedInUserId } = req.body
+  // console.log("hi")
   Orc
-    .findByUsername(loggedInUserName)
+    .findByUserId(loggedInUserId)
     // .then(orc => console.log(orc))
     .then(orcSummoned => {
       if (orcSummoned) {
-        res.json(orcSummoned.orc)
+        res.json(orcSummoned)
       } else {
         res.json(null)
       }
     })
+})
+
+router.put('/energy', (req, res) => {
+  const { energy, loggedInUserId } = req.body
+
+  Orc
+    .restoreEnergy(energy, loggedInUserId)
 })
 
 

@@ -1,5 +1,5 @@
 const express = require('express')
-const dotenv = require('dotenv').config()
+// const dotenv = require('dotenv').config()
 
 // middlewares
 const logger = require('./middlewares/logger')
@@ -11,14 +11,13 @@ const sessionsController = require('./controllers/sessions_controller')
 const orcsController = require('./controllers/orcs_controller')
 
 const app = express()
-const PORT = 3001
+const port = process.env.PORT || 8080;
 
 // start web server
-app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`))
+app.listen(port, () => console.log(`Server is listening on port: ${port}`))
 
 // middleware functions passed into app.use
 app.use(logger)
-app.use(express.static('client'))
 app.use(express.json())
 app.use(sessions)
 
