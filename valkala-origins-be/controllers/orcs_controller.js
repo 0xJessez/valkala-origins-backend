@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     .then(orc => res.json(orc))
 })
 
-router.get('/check', (req, res) => {
+router.post('/check', (req, res) => {
   const { loggedInUserName } = req.body
 
   Orc
